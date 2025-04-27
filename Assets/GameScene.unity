@@ -384,8 +384,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae36c23690b04c999acdb487b834c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: 0
   _rotationSpeed: 1
   _movementSpeed: 0.1
+  _damageDetectionThreshold: 30
 --- !u!1 &437372151
 GameObject:
   m_ObjectHideFlags: 0
@@ -399,6 +401,7 @@ GameObject:
   - component: {fileID: 437372153}
   - component: {fileID: 437372152}
   - component: {fileID: 437372156}
+  - component: {fileID: 437372157}
   m_Layer: 0
   m_Name: RedBall0
   m_TagString: Untagged
@@ -555,6 +558,22 @@ MonoBehaviour:
   _movementForce: 10
   _jumpForce: 400
   _jumpDetectionThreshold: 30
+--- !u!114 &437372157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 437372151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fbc0ddb8554c9d43a0670472113e055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _leftEye: {fileID: 0}
+  _rightEye: {fileID: 0}
+  _mouth: {fileID: 0}
+  _emotions: []
 --- !u!1 &440833414
 GameObject:
   m_ObjectHideFlags: 0

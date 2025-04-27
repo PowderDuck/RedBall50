@@ -21,13 +21,17 @@ namespace RedBall50.Scripts
 
         private bool _isGrounded = false;
 
+        private EmotionController _emotionController = default!;
+
         private void Start()
         {
+            _emotionController = GetComponent<EmotionController>();
             _rigidbody = GetComponent<Rigidbody2D>();
+
             _leftMoveBtn.Update += (sender, eventArgs) =>
-                OnMovementPressed(eventArgs, Vector2.left);
-            _rightMoveBtn.Update += (sender, eventArgs)
-                => OnMovementPressed(eventArgs, Vector2.right);
+                OnMovementUpdated(eventArgs, Vector2.left);
+            _rightMoveBtn.Update += (sender, eventArgs) =>
+                OnMovementUpdated(eventArgs, Vector2.right);
             _jumpBtn.Update += OnJump;
         }
 
@@ -36,7 +40,13 @@ namespace RedBall50.Scripts
             _rigidbody.AddForce(_movementForce * _direction);
         }
 
-        private void OnMovementPressed(
+        public void TakeDamage(float damage)
+        {
+            _ = damage;
+            _emotionController.SetEmotion(Enums.EmotionType.Damaged);
+        }
+
+        private void OnMovementUpdated(
             InteractableUIEventArgs eventArgs,
             Vector2 direction)
         {

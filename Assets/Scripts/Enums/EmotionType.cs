@@ -1,6 +1,6 @@
 namespace RedBall50.Scripts.Enums
 {
-    public enum Emotion
+    public enum EmotionType
     {
         Idle,
         Victorious,

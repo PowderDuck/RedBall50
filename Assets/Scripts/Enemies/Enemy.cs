@@ -4,6 +4,6 @@ namespace RedBall50.Scripts.Enemies
 {
     public abstract class Enemy : MonoBehaviour
     {
-        public abstract float MovementSpeed { get; }
+        [SerializeField] protected float _health = default!;
     }
 }

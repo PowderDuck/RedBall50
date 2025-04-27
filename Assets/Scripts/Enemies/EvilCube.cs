@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RedBall50.Scripts.Enemies
@@ -8,7 +7,7 @@ namespace RedBall50.Scripts.Enemies
         [SerializeField] private float _rotationSpeed = 0f;
         [SerializeField] private float _movementSpeed = 0f;
 
-        public override float MovementSpeed => _movementSpeed;
+        [SerializeField] private float _damageDetectionThreshold = 30f;
 
         private Vector3 _dynamicRotation { get; set; } = Vector3.zero;
         private Rigidbody2D _rigidbody { get; set; } = default!;
@@ -24,7 +23,7 @@ namespace RedBall50.Scripts.Enemies
             _dynamicRotation += _rotationSpeed * Vector3.forward;
             // transform.eulerAngles = _dynamicRotation;
             _rigidbody.rotation = _dynamicRotation.z;
-            _rigidbody.velocity = MovementSpeed * Vector3.left;
+            _rigidbody.velocity = _movementSpeed * Vector3.left;
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -35,6 +34,18 @@ namespace RedBall50.Scripts.Enemies
                 var closestPoint = collision.collider
                     .ClosestPoint(transform.position);
                 var angle = Vector2.Angle(Vector2.up, closestPoint);
+                if (angle <= _damageDetectionThreshold)
+                {
+                    _health -= 1;
+                    if (_health <= 0)
+                    {
+
+                    }
+                }
+                else
+                {
+                    controller.TakeDamage(1);
+                }
             }
         }
     }
