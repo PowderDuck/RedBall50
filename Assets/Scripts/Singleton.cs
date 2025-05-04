@@ -9,7 +9,11 @@ namespace RedBall50.Scripts
 
         protected virtual void Awake()
         {
-            Instance = GetComponent<T>();
+            Instance = Instance == null ?
+                GetComponent<T>() : throw new System.Exception(
+                    $"Only one Instance of {typeof(T).Name} is Allowed");
+
+            DontDestroyOnLoad(this);
         }
     }
 }
